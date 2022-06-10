@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 include '../admin/controller.php';
 ?>
 
@@ -115,21 +116,55 @@ include '../admin/controller.php';
                                 <div class="container-fluid">
                                     <div class="row">
                                     </div>
-                                    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="hpanel">
                                             <div class="panel-heading hbuilt mailbox-hd">
-                                                <div class="text-center p-xs font-normal">
+                                                <h4>Daftar Pesan</h4>
+                                                <!-- <div class="text-center p-xs font-normal">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control input-sm" placeholder="Search email in your inbox..."> <span class="input-group-btn active-hook">
                                                             <button type="button" class="btn btn-sm btn-default">Search</button> </span>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive ib-tb">
-                                                    <table class="table table-hover table-mailbox">
+                                                    <table class="table table-hover table-mailbox" id="dataTables-pesan-guru">
+                                                        <thead>
+                                                            <tr>
+                                                                <!-- <th>No</th> -->
+                                                                <th>Nama Murid</th>
+                                                                <th>Subjek Pesan</th>
+                                                                <th>Isi Pesan</th>
+                                                                <th>Waktu</th>
+                                                            </tr>
+                                                        </thead>
                                                         <tbody>
-                                                            <tr class="unread">
+                                                            <?php
+                                                            include("../dbcon.php");
+
+                                                            if ($value) {
+                                                                // $i = 1;
+                                                                foreach ($value as $key => $row) {
+                                                            ?>
+                                                                    <tr>
+                                                                        <!-- <td><?= $i++ ?></td> -->
+                                                                        <td><?= $row['id_murid'] ?></td>
+                                                                        <td><?= $row['subjek_pesan'] ?></td>
+                                                                        <td><?= $row['isi_pesan'] ?></td>
+                                                                        <td><?= $row['waktu'] ?></td>
+                                                                    </tr>
+                                                                <?php
+                                                                }
+                                                            } else {
+                                                                ?>
+                                                                <tr>
+                                                                    <td>Tidak Ada Data</td>
+                                                                </tr>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <!-- <tr class="unread">
                                                                 <td class="">
                                                                     <div class="checkbox checkbox-single checkbox-success">
                                                                         <input type="checkbox" checked>
@@ -152,8 +187,8 @@ include '../admin/controller.php';
                                                                 <td><a href="#">Quisque quis turpis ac quam sagittis scelerisque vel uturna.</a></td>
                                                                 <td></td>
                                                                 <td class="text-right mail-date">Sun, Mar 27</td>
-                                                            </tr>
-                                                            <p id="demo"></p>
+                                                            </tr> -->
+                                                            <!-- <p id="demo"></p> -->
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -175,13 +210,6 @@ include '../admin/controller.php';
     </div>
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
     <!-- Morris Chart Js -->
     <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
     <script src="assets/js/morris/morris.js"></script>
@@ -195,11 +223,31 @@ include '../admin/controller.php';
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
 
+    <!-- <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-pesan-guru').dataTable();
+            });
+    </script> -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-pesan-guru').dataTable();
+        });
+    </script>
 
     <!-- Chart Js -->
     <script type="text/javascript" src="assets/js/Chart.min.js"></script>
     <script type="text/javascript" src="assets/js/chartjs.js"></script>
-    <script type="module">
+    <!-- <script type="module">
         // Import the functions you need from the SDKs you need
         import {
             initializeApp
@@ -238,7 +286,7 @@ include '../admin/controller.php';
         // const refPesan = db.ref('pesan')
 
         const dbRef = ref(db);
-
+        console.log(app,analytics,db,dbRef)
         //get data chat
         function getData() {
             // const cek = db.ref('pesan')
@@ -251,20 +299,20 @@ include '../admin/controller.php';
 
             console.log(cek, "data")
         }
-        
+
         let text = ''
+
         function myFunc(item) {
             const datacek = document.getElementById('demo');
             document.getElementById("demo").innerHTML = text;
-            text+= item.isi_pesan + "<br>";
+            text += item.isi_pesan + "<br>";
             console.log(text)
         }
 
         console.log(db, "db")
 
         getData();
-
-    </script>
+    </script> -->
 
 </body>
 
