@@ -112,14 +112,11 @@ include 'config.php';
                                 <center>Masukan Mata Pelajaran | Admin</center>
                             </div>
                                 <div class="panel-body">
-                                    <form action="masukkan-jadwal-aksi.php" method="POST" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                            <label for="exampleInputNik">Nama Jadwal:</label>
-                                            <input type="text" class="form-control" name="nama_jadwal" placeholder="Masukkan Nama Jadwal">
-                                        </div>
+                                    <form action="upload.php" method="POST" enctype="multipart/form-data">
+                                   
                                         <div class="form-group">
                                             <label for="exampleInputFile">Input File :</label>
-                                            <input type="file" class="form-control" name="pas_foto" >
+                                            <input type="file" class="form-control" name="upload" >
                                         </div>
                                         <center> <button type="submit" name="submit" class="btn btn-default">Submit</button> </center> <br><br>
                                     </form>
@@ -135,38 +132,30 @@ include 'config.php';
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Nama Jadwal</th>
-                                                    <th>File</th>
-                                                    <th>Aksi</th>
+                                                    <th>File Name</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                                 <tbody> 
-                                                    <?php 
-				                                    $no = 1;
-				                                    $get_data = mysqli_query($conn,"SELECT * FROM jadwal");
-				                                    while ($data = mysqli_fetch_array($get_data)) {
-					                                ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $no++ ?></td>
-                                                        <td><?php echo $data['nama_jadwal']; ?></td>
-                                                        <td>
-                                                        <?php 
-							                            if ($data['foto'] == "") { ?>
-								                            <img src="https://via.placeholder.com/500x500.png?text=PAS+FOTO+SISWA" style="width:100px;height:100px;">
-							                            <?php }else{ ?>
-								                        <img src="foto-jadwal/<?php echo $data['foto']; ?>" style="width:100px;height:100px;">
-							                            <?php } ?>
-                                                        </td>
-                                                        <td>
-                                                        <a href="edit-jadwal.php?id_jadwal= <?php echo $data['id_jadwal']; ?>" data-toggle="modal" class="btn btn-primary">Edit<span></span> </a> 
-                                                        <a href="hapus-jadwal-aksi.php?id_jadwal= <?php echo $data['id_jadwal']; ?>" data-toggle="modal" class="btn btn-danger">Hapus<span></span> </a> 
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
                                                     <?php
-                                                        }
-                        
-                                                    ?>
+                                                                require 'config.php';
+                                                                $no=1;
+                                                                $row = $conn->query("SELECT * FROM `jadwal`") or die(mysqli_error());
+                                                                while($fetch = $row->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                    <?php 
+                                                                    $name = explode('/', $fetch['file']);
+                                                                    ?>
+                                                                    <td><?php echo $no++ ?></td>
+                                                                    <td><?php echo $fetch['name']?></td>
+                                                                    <td><a href="download.php?file=<?php echo $name[1]?>" class="btn btn-primary"><span class="glyphicon glyphicon-download"></span> Download</a></td>
+
+                                                                </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                </tbody>
                                         </table>
                                     </div>
                                 </div>

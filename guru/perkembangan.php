@@ -20,27 +20,3 @@
         ?>
     </select>
 </div>
-<div class="indikator"></div>
-<script>
-    $(document).ready(function(){
-        load_indikator();
-        function load_indikator(perkembangan)
-        {
-            console.log("loading perkembangan");
-            $.ajax({
-                method:"POST",
-                url:"indikator.php",
-                data: {perkembangan:perkembangan},
-                success:function(hasil)
-                {
-                    $('.indikator').html(hasil);
-                }
-            });
-        }
-        $('#perkembangan_select').change(function(){
-            console.log("change perkembangan");
-            // var perkembangan = $("#perkembangan").val();
-            // load_indikator(perkembangan);
-        });
-    });
-</script>

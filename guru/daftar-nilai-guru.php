@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<?php 
+session_start();
+include '../admin/controller.php';
+?>
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -80,6 +85,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -102,70 +110,57 @@
                         <div class="panel-heading">
                             <center>Daftar Nilai Murid | Guru</center>
                         </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>No Induk</th>
-                                                <th>Nama</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="odd gradeX">
-                                                <td>3</td>
-                                                <td>Win 95+</td>
-                                                <td>Win 95+</td>
-                                                <td>
-                                                <a href="#>"data-toggle="modal" class="btn btn-primary">Detail<span></span> </a>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeC">
-                                                <td>4</td>
-                                                <td>Win 95+</td>
-                                                <td>Win 95+</td>
-                                                <td>
-                                                <a href="#>" data-toggle="modal" class="btn btn-primary">Detail<span></span> </a> 
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeA">
-                                                <td>5</td>
-                                                <td>Win 95+</td>
-                                                <td>Win 95+</td>
-                                                <td>
-                                                <a href="#>" data-toggle="modal" class="btn btn-primary">Detail<span></span> </a> 
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeA">
-                                                <td>6</td>
-                                                <td>Win 98+</td>
-                                                <td>Win 95+</td>
-                                                <td>
-                                                <a href="#>" data-toggle="modal" class="btn btn-primary">Detail<span></span> </a>  
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeA">
-                                                <td>7</td>
-                                                <td>Win XP SP2+</td>
-                                                <td>Win 95+</td>
-                                                <td>
-                                                <a href="#>" data-toggle="modal" class="btn btn-primary">Detail<span></span> </a>
-                                                </td>
-                                            </tr>
-                                            <tr class="gradeU">
-                                                <td>All others</td>
-                                                <td>apa kek</td>
-                                                <td>Win 95+</td>
-                                                <td>
-                                                <a href="#>" data-toggle="modal" class="btn btn-primary">Detail<span></span> </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>  
-                            </div>
+                        <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>ID Murid</th>
+                                                    <th>Kelas</th>
+                                                    <th>No Induk</th>
+                                                    <th>Semester</th>
+                                                    <th>Lingkup</th>
+                                                    <th>Perkembangan</th>
+                                                    <th>Indikator</th>
+                                                    <th>Nilai</th>
+                                                </tr>
+                                            </thead>
+                                                <tbody>
+                                                    <?php
+                                                        $no=1;
+                                                        $query=mysqli_query($conn,"select * from nilai");
+                                                        
+                                                        
+                                                        while($row=mysqli_fetch_array($query)){
+                                                            $idn = $row['id_murid'];
+                                                            $query2=mysqli_query($conn,"select * from murid where id_murid=$idn");
+                                                            $row_murid=mysqli_fetch_array($query2)
+                                                    ?>
+                                                    <tr class="odd gradeX">
+                                                        <td><?php echo $no++ ?></td>
+                                                        <?php 
+                                                           
+                                                         ?>
+                                                        <td><?php echo $row_murid['nama']; ?></td>
+                                                        <td><?php echo $row['id_murid']; ?></td>
+                                                        <td><?php echo $row_murid['kelas']; ?></td>
+                                                        <td><?php echo $row_murid['nisn']; ?></td>
+                                                        <td><?php echo $row['semester']; ?></td>
+                                                        <td><?php echo $row['kode_lingkup']; ?></td>
+                                                        <td><?php echo $row['kode_sub_lingkup']; ?></td>
+                                                        <td><?php echo $row['kode_indikator']; ?></td>
+                                                        <td><?php echo $row['nilai']; ?></td>
+                                                    </tr>
+                                                </tbody>
+                                                    <?php
+                                                        }
+                        
+                                                    ?>
+                                        </table>
+                                    </div>
+                                </div>
                         </div>
                     <!--End Advanced Tables -->
                 </div>

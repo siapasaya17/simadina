@@ -21,6 +21,8 @@ include '../admin/controller.php';
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+    <!-- jQuery Js -->
+    <script  src="assets/js/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -84,6 +86,9 @@ include '../admin/controller.php';
                                 </li>
                             </ul>
                     </li>
+                    <li>
+                        <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -115,30 +120,37 @@ include '../admin/controller.php';
                                     <div class="col-xs-12">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                                <form>
+                                                <form method="POST" action="semester.php">
                                                     <div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputNama">Nama :</label>
+                                                        <input type="text" list="nama" name="nama" class="form-control" id="namasiswa" value=""  placeholder="Masukkan Nama">
+                                                        <datalist id="nama">
+                                                            <?php 
+                                                            $query=mysqli_query($conn,"select * from murid");
+                                                            while($row=mysqli_fetch_array($query)){?>
+                                                                <option value="<?=$row['nama']?>" data-kelas="[<?=$row['kelas']?>,<?=$row['nisn']?>" data-id="<?=$row['id_murid']?>"><?=$row['nama'] ?></option>
+                                                            <?php } ?>
+                                                        </datalist>  
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputID">ID Murid :</label>
+                                                            <input type="text" name="id_murid" class="form-control" id="id_murid" placeholder="ID Murid">
+                                                        </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputNik">Kelas :</label> 
-                                                                <select name="" id="" class="form-control">
-                                                                    <option value="">-----Pilih Kelas-----</option>
-                                                                    <option value="a"> Kelas A</option>
-                                                                    <option value="b"> Kelas B</option>
-                                                                </select>
+                                                            <input type="text" name="kelas" id="kelas" class="form-control" readonly>
                                                         </div>
                                                         <div class="form-group">
-                                                        <label for="exampleInputNama">Nama :</label>
-                                                        <input type="text" name="nama" class="form-control" id="exampleInputNama" value=""  placeholder="Masukkan Nama">
+                                                            <label for="exampleInputnoinduk">No Induk :</label>
+                                                            <input type="text" name="noinduk" class="form-control" id="noinduk" placeholder="No Induk">
                                                         </div>
                                                         <div class="form-group">
-                                                        <label for="exampleInputnoinduk">No Induk :</label>
-                                                        <input type="text" name="" class="form-control" id="exampleInputNama" value=""  placeholder="Masukkan Nama">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputAlamat">Semester :</label>
+                                                            <label class="control-label">Semester :</label>
                                                                 <select id="semester" class="form-control" name="semester"  required="">
                                                                     <option selected>-Pilih-</option>
-                                                                    <option>Semester I </option>
-                                                                    <option>Semester II </option>
+                                                                    <option>I</option>
+                                                                    <option>II</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -158,43 +170,27 @@ include '../admin/controller.php';
                                                                     ?>
                                                             </select>
                                                         </div>
-                                                        <div class="perkembangan"></div>
-                                                        <script>
-                                                            $(document).ready(function(){
-                                                                load_perkembangan();
-                                                                function load_perkembangan(lingkup)
-                                                                {
-                                                                    console.log(lingkup);
-                                                                    $.ajax({
-                                                                        method:"POST",
-                                                                        url:"perkembangan.php",
-                                                                        data: {lingkup:lingkup},
-                                                                        success:function(hasil)
-                                                                        {
-                                                                            $('.perkembangan').html(hasil);
-                                                                        }
-                                                                    });
-                                                                }
-                                                                $('#lingkup').change(function(){
-                                                                    var lingkup = $("#lingkup").val();
-                                                                    console.log("change lingkup");
-                                                                    load_perkembangan(lingkup);
-                                                                });
-                                                            });
-                                                        </script>     
-                                                        <!-- <div class="form-group">
-                                                            <label for="exampleInputAlamat">Indikator :</label>
-                                                                <select id="jurusan" class="form-control" name="jurusan"  required="">
-                                                                    <option selected>-Pilih-</option>
-                                                                    <option>1. Berdiri Dengan Tumit Diatas Satu Kaki Dengan Seimbang </option>
-                                                                    <option>2. Naik Ayun-ayunan Dan Merayap di Terowongan tanpa jatuh </option>
-                                                                    <option>3. Mengeskpresikan Berbagai Kepala, Tangan, dan Kaki Sesuai Dengan Irama/Musik dengan Lentur </option>
-                                                                    <option>4. Mengurus Diri Sendiri Tanpa Bantuan Seperti : Makan, Mandi, Menyisir Rambut, Mengancing Baju, Memakai Sepatu dan Mengikat Tali Sepatu </option>
-                                                                </select>
-                                                        </div>   -->
                                                         <div class="form-group">
-                                                            <label for="exampleInputAlamat">Nilai :</label>
-                                                            <select id="keterangan" class="form-control" name="keterangan"  required="">
+                                                            <label for="exampleInputAlamat">Perkembangan :</label>
+                                                            <select id="perkembangan_select" class="form-control" name="perkembangan">
+                                                                <option selected value="">-Pilih-</option>
+                                                                <?php 
+                                                                    
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                       <div class="form-group">
+                                                            <label for="exampleInputAlamat">Indikator :</label>
+                                                            <select id="indikator" class="form-control" name="indikator">
+                                                                <option selected value="">-Pilih-</option>
+                                                            </select>
+                                                                <?php 
+                                                                    
+                                                                ?>
+                                                        </div>     
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nilai :</label>
+                                                            <select id="keterangan" class="form-control" name="nilai"  required="">
                                                                 <option selected>-Pilih-</option>
                                                                 <option>BS</option>
                                                                 <option>B</option>
@@ -216,8 +212,62 @@ include '../admin/controller.php';
                 </div>                
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <?php 
+    $query = "SELECT * FROM sub_lingkup";
+    $sth = mysqli_query($conn, $query);
+    $sub_lingkup = array();
+    while($r = mysqli_fetch_assoc($sth)) {
+        $sub_lingkup[] = $r;
+    }
+    $sub_lingkup = json_encode($sub_lingkup);
+    $query1 = "SELECT * FROM indikator";
+    $sth1 = mysqli_query($conn, $query1);
+    $indikator = array();
+    while($r = mysqli_fetch_assoc($sth1)) {
+        $indikator[] = $r;
+    }
+    $indikator = json_encode($indikator);
+    ?>
+    
+    <script>
+        const dataperkembangan = <?=$sub_lingkup?>;
+        const dataindikator = <?=$indikator?>;
+        $('#lingkup').change(function(){
+            $('#perkembangan_select').empty();
+            $('#perkembangan_select').append(new Option("Pilih","",true));
+            for (var i=0; i<=dataperkembangan.length;i++){
+                if(dataperkembangan[i]?.kode_lingkup===$('#lingkup').val()){
+                    $('#perkembangan_select').append(new Option(dataperkembangan[i].nama_sub_lingkup,dataperkembangan[i].kode_sub_lingkup));
+                }
+            }
+        })
+        $('#perkembangan_select').change(function(){
+            $('#indikator').empty();
+            $('#indikator').append(new Option("Pilih","",true));
+            for (var i=0; i<=dataindikator.length;i++){
+                if(dataindikator[i]?.kode_sub_lingkup===$('#perkembangan_select').val()){
+                    $('#indikator').append(new Option(dataindikator[i].nama_indikator,dataindikator[i].kode_indikator));
+                }
+            }
+        })
+        $('#namasiswa').change(function(){
+            var proName=$("#namasiswa").val();
+            var value = $('#nama option').filter(function() {
+                return this.value == proName;
+            }).data('kelas');
+            var kelas = value;
+            $("#kelas").val(kelas[1]);
+            $("#noinduk").val(kelas.slice(-6,-1));
+
+
+            var value_id = $('#nama option').filter(function() {
+                return this.value == proName;
+            }).data('id');
+            var idm = value_id;
+            $("#id_murid").val(idm);
+        })
+    </script>
+    
     <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
      

@@ -72,6 +72,9 @@
                                 <a href="daftar-pesan-murid.php">Daftar Pesan</a>
                             </li>
                         </ul>
+                        <li>
+                        <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                    </li>
                     </li>
                 </ul>
             </div>

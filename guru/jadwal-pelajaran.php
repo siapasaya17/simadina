@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $koneksi = new mysqli("localhost", "root", "", "madina");
+    include '../admin/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="" name="description" />
     <meta content="webthemez" name="author" />
-    <title>Dashboard Guru | SiMadina</title>
+    <title>Jadwal Pelajaran | SiMadina</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -46,7 +47,7 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="biodata-guru.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="biodata-murid.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="../admin/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -60,7 +61,7 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a class="active-menu" href="dashboard-guru.php"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a class="" href="dashboard-guru.php"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="biodata-guru.php"><i class="fa fa-user"></i>Biodata<span class="fa "></span></a>
@@ -88,7 +89,7 @@
                             </ul>
                     </li>
                     <li>
-                        <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                        <a class="active-menu" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
                     </li>
                 </ul>
             </div>
@@ -97,70 +98,70 @@
         <div id="page-wrapper">
             <div class="header"> 
                 <h1 class="page-header">
-                    Dashboard <small>Welcome Guru </small>
+                    Jadwal Pelajaran <small>Welcome Guru </small>
                 </h1>
                     <ol class="breadcrumb">
                       <li><a href="#">Home</a></li>
-                      <li class="active">Dashboard</li>
+                      <li class="active">Jadwal Pelajaran</li>
                     </ol>                   
             </div>
-            <div id="page-inner">
+            <div id="page-inner">   
                 <div class="row">
-                        <div class="col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <div class="card-title">
-                                        <div class="title text-center">KB IT AL-MADINA ACADEMY</div>
-                                    </div>
-                                </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">    
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="panel-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>NPSN</th>
-                                                            <th>: 69852808</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Alamat</th>
-                                                            <th>: JL.ADE IRMA SURYANI PANDA IV</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Kode Pos</th>
-                                                            <th>: 83122</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Kelurahan</th>
-                                                            <th>: Monjok</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Kecamatan</th>
-                                                            <th>: Kec. Selaparang</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>NPSN</th>
-                                                            <th>: 69852808</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>NPSN</th>
-                                                            <th>: 69852808</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <center>Daftar Mata pelajaran | Guru</center>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>File Name</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody> 
+                                                            <?php
+                                                                $no=1;
+                                                                $row = $conn->query("SELECT * FROM `jadwal`") or die(mysqli_error());
+                                                                while($fetch = $row->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                    <?php 
+                                                                    $name = explode('/', $fetch['file']);
+                                                                    ?>
+                                                                    <td><?php echo $no++ ?></td>
+                                                                    <td><?php echo $fetch['name']?></td>
+                                                                    <td><a href="../admin/download.php?file=<?php echo $name[1]?>" class="btn btn-primary"><span class="glyphicon glyphicon-download"></span> Download</a></td>
+
+                                                                </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                    <!-- FOOOTER -->
-                                <footer><p><center> All right reserved | SiMadina 2022</center></p></footer>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
-    <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
+            <div class="row">  
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+            <footer> <p><center> All right reserved | SiMadina 2022</center></p> </footer>
+    </div> 
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
@@ -180,8 +181,6 @@
     
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-
-      
     <!-- Chart Js -->
     <script type="text/javascript" src="assets/js/Chart.min.js"></script>  
     <script type="text/javascript" src="assets/js/chartjs.js"></script> 

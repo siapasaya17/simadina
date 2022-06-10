@@ -38,13 +38,15 @@
 				$id = $_GET['id'];// dak ini valuenya ?
 				header('location:../murid/dashboard-murid.php');
 			}else{
-				header("location:login.php?pesan1=gagal1");
+				header("location:index.php?pesan1=gagal1");
 			}
 			
 			//header('location:index.php');
 			
-		}else{
-			header("location:login.php?pesan=gagal");
-		}
+	
+			}else {
+				header('location:index.php?error='.base64_encode('username dan password Invalid!!!'));
+				exit();
+			}
 		
 ?>

@@ -144,7 +144,15 @@ include 'config.php';
                                             <label for="exampleInputNik">Password :</label>
                                             <input type="text" class="form-control" name="password" placeholder="Masukkan Password">
                                         </div>
-                                        <center><button type="text" class="btn btn-default">Submit</button> </center>
+                                        <div class="form-group">
+                                            <label for="exampleInputNik"> ID Guru:</label>
+                                            <input type="text" class="form-control" name="id_guru" placeholder="Masukkan ID Guru">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputNik">ID Murid :</label>
+                                            <input type="text" class="form-control" name="id_murid" placeholder="Masukkan ID Murid">
+                                        </div>
+                                        <center><button type="submit" class="btn btn-default">Submit</button> </center>
                                     </form>
                                 </div>
                             </div>

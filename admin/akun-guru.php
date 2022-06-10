@@ -43,8 +43,7 @@ include 'config.php';
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -95,13 +94,13 @@ include 'config.php';
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div class="header"> 
-                    <h1 class="page-header">
-                        Admin <small> Welcome Admin</small>
-                    </h1>
-                        <ol class="breadcrumb">
-                            <li><a href="#">Akun</a></li>
-                            <li class="active">Akun Guru</li>
-                        </ol>                 
+                <h1 class="page-header">
+                    Admin <small> Welcome Admin</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#">Akun</a></li>
+                    <li class="active">Akun Guru</li>
+                </ol>                 
             </div>
             <div id="page-inner"> 
                 <div class="row">
@@ -112,36 +111,35 @@ include 'config.php';
                                 <center>Daftar Akun | Guru</center>
                             </div>
                                 <div class="panel-body">
-                                <a href="tambah-biodata-guru.php" class="btn btn-success">Tambah Biodata Guru<span></span> </a> <br> <br>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Nama</th>
-                                                    <th>Nik</th>
-                                                    <th>Tanggal lahir</th>
-                                                    <th>Jenis Kelamin</th>
-                                                    <th>Alamat</th>
-                                                    <th>Telepon</th>
-                                                    <th>Agama</th>
-                                                    <th>Status Pegawai</th>
-                                                    <th>PTK</th>
-                                                    <th>Email</th>
-                                                    <th>NIDN</th>
-                                                    <th>Nama Ibu</th>
-                                                    <th>Nama Ayah</th>
-                                                    <th>File foto</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                    </thead>
-                                                        <tbody>
-                                                            <?php
-                                                                $no=1;
-                                                                $query=mysqli_query($conn,"select * from guru");
-                                                                while($row=mysqli_fetch_array($query)){
-                                                            ?>
+                                    <a href="tambah-biodata-guru.php" class="btn btn-success">Tambah Biodata Guru<span></span> </a> <br> <br>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama</th>
+                                                        <th>Nik</th>
+                                                        <th>Tanggal lahir</th>
+                                                        <th>Jenis Kelamin</th>
+                                                        <th>Alamat</th>
+                                                        <th>Telepon</th>
+                                                        <th>Agama</th>
+                                                        <th>Status Pegawai</th>
+                                                        <th>PTK</th>
+                                                        <th>Email</th>
+                                                        <th>NIDN</th>
+                                                        <th>Nama Ibu</th>
+                                                        <th>Nama Ayah</th>
+                                                        <th>File foto</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            $no=1;
+                                                            $query=mysqli_query($conn,"select * from guru");
+                                                            while($row=mysqli_fetch_array($query)){
+                                                        ?>
                                                             <tr class="odd gradeX">
                                                                 <td><?php echo $no++ ?></td>
                                                                 <td><?php echo $row['nama']; ?></td>
@@ -168,23 +166,19 @@ include 'config.php';
                                                 }
                                 
                                                 ?>
-                                        </table>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                        </div>
                     </div>
                 </div>
             <div class="row">
-                <div class="col-md-6">
-                </div>
+                <div class="col-md-6"></div>
             </div>
             </div>
                 <footer><p><center> All right reserved | SiMadina 2022</center></p>
             </div>
-    </div>
-    <!-- /. PAGE WRAPPER  -->
-    <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
+        </div>
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->

@@ -78,6 +78,9 @@ include '../admin/controller.php';
                                 </li>
                             </ul>
                     </li>
+                    <li>
+                        <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                    </li>
                 </ul>
             </div>
         </nav>

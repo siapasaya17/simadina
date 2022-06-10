@@ -81,6 +81,9 @@ include '../admin/controller.php';
                                 <a href="daftar-nilai-guru.php">Daftar Nilai</a>
                             </li>
                         </ul>
+                        <li>
+                            <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                        </li>
                     </li>
                 </ul>
             </div>

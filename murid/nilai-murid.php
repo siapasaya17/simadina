@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<?php 
+session_start();
+include '../admin/controller.php';
+?>
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -73,6 +78,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="" href="jadwal-pelajaran.php"><i class="fa fa fa-file"></i> Jadwal Pelajaran </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -97,16 +105,26 @@
                                         <div class="title text-center">Nilai Murid</div>
                                     </div>
                                 </div>
-                                &nbsp; &nbsp; <a href="cetak-raport.php" class="btn btn-primary btn-lg" role="button"> Cetak </a> 
+                                &nbsp; &nbsp; <a target="_blank" href="cetak-raport.php?id_guru=<?php echo $_SESSION['id_murid']; ?>" class="btn btn-primary btn-lg" role="button"> Cetak </a> 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel-body">
                                             <div class="table-responsive">
+                                            <?php
+                                            $query = "SELECT * FROM murid where id_murid = '$_SESSION[id_murid]'";
+                                            $hasil = getData($query);
+                                            $bs = "BS";
+                                            $b = "B";
+                                            $c= "C";
+                                            $k= "K";
+                                            while($result = mysqli_fetch_assoc($hasil)){
+
+                                            ?>
                                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                         <thead>
                                                             <tr>
                                                             <th rowspan = "3">  No  </th> 
-                                                                <th rowspan = "3"> Indikator </th>
+                                                                <th rowspan = "3"> <p style="text-align:center"> Indikator </th>
                                                                 <th colspan = "4"> <p style="text-align:center"> Penilaian Perkembangan Anak </p> </th> 
                                                                 <th colspan = "4"> <p style="text-align:center"> Penilaian Perkembangan Anak </p> </th>
                                                             </tr>
@@ -126,21 +144,46 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+                                                            <?php
+                                                                $no=1;
+                                                                $query=mysqli_query($conn,"
+                                                                select * from nilai
+                                                                JOIN indikator ON indikator.kode_indikator = nilai.kode_indikator
+                                                                ");
+                                                                while($row=mysqli_fetch_array($query)){
+                                                            ?>
+                                                            <tr class="odd gradeX">
+                                                                <td><?php echo $no++ ?></td>
+                                                                <td><?php echo $row['nama_indikator']; ?></td>
+                                                                <?php if($row['semester']=="I"){?>
+                                                                    <td><?php if($row['nilai']=="BS"){echo "<p>&#10004</p>";}?></td>
+                                                                <td><?php if($row['nilai']=="B"){echo "<p>&#10004</p>";}?></td>
+                                                                <td><?php if($row['nilai']=="C"){echo "<p>&#10004</p>";}?></td>
+                                                                <td><?php if($row['nilai']=="K"){echo "<p>&#10004</p>";}?></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                               <?php } else{?>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td></td>
-                                                            </tr>
+                                                                <td><?php if($row['nilai']=="BS"){echo "<p>&#10004</p>";}?></td>
+                                                                <td><?php if($row['nilai']=="B"){echo "<p>&#10004</p>";}?></td>
+                                                                <td><?php if($row['nilai']=="C"){echo "<p>&#10004</p>";}?></td>
+                                                                <td><?php if($row['nilai']=="K"){echo "<p>&#10004</p>";}?></td>
+                                                               <?php }?>
                                                         </tbody>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </table>
                                                 </div>
-                                        </div>   
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>   
                                     </div>
                                 </div>
 				                <footer><p><center> All right reserved | SiMadina 2022</center></p></footer>
