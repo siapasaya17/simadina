@@ -133,8 +133,8 @@ include '../admin/controller.php';
                                                         <thead>
                                                             <tr>
                                                                 <!-- <th>No</th> -->
+                                                                <th>Nama Guru</th>
                                                                 <th>Nama Murid</th>
-                                                                <th>Subjek Pesan</th>
                                                                 <th>Isi Pesan</th>
                                                                 <th>Waktu</th>
                                                             </tr>
@@ -142,19 +142,22 @@ include '../admin/controller.php';
                                                         <tbody>
                                                             <?php
                                                             include("../dbcon.php");
-
+                                                            
                                                             if ($value) {
                                                                 // $i = 1;
                                                                 foreach ($value as $key => $row) {
+                                                                    if(strval($row['id_guru']) === $_SESSION['id']){
                                                             ?>
                                                                     <tr>
                                                                         <!-- <td><?= $i++ ?></td> -->
+                                                                        <td><?= $row['id_guru'] ?></td>
                                                                         <td><?= $row['id_murid'] ?></td>
-                                                                        <td><?= $row['subjek_pesan'] ?></td>
                                                                         <td><?= $row['isi_pesan'] ?></td>
                                                                         <td><?= $row['waktu'] ?></td>
                                                                     </tr>
                                                                 <?php
+                                                                        
+                                                                    }
                                                                 }
                                                             } else {
                                                                 ?>
