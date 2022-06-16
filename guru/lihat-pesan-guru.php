@@ -131,67 +131,50 @@ include '../admin/controller.php';
                                                 </div> -->
                                             </div>
                                             <div class="panel-body">
-                                                <div class="table-responsive ib-tb">
-                                                    <table class="table table-hover table-mailbox" id="dataTables-pesan-guru">
-                                                        <thead>
-                                                            <tr>
-                                                                <!-- <th>No</th> -->
-                                                                <th>Nama Guru</th>
-                                                                <th>Nama Murid</th>
-                                                                <th>Aksi</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php
-                                                            include("../dbcon.php");
+                                                <div style="min-height:500px;overflow:scroll;margin-bottom:20px;">
+                                                    <?php
+                                                    include("../dbcon.php");
 
-                                                            if ($value) {
-                                                                // var_dump($value,"sadasdasdasd");
-                                                                // $i = 1;
-                                                                foreach ($value as $key => $row) {
-                                                                    if (strval($row['id_guru']) === $_SESSION['id_guru']) {
-                                                                        $guru = $row['id_guru'];
-                                                                        $query_nama_guru    = "SELECT nama FROM guru WHERE id_guru='$guru';";
-                                                                        $sql = mysqli_query($conn, $query_nama_guru);
-                                                                        $r_guru    = mysqli_fetch_row($sql);
-                                                                        $nama_guru = $r_guru[0];
-
-                                                                        $murid = $row['id_murid'];
-                                                                        $query_nama_murid    = "SELECT nama FROM murid WHERE nisn='$murid';";
-                                                                        $sql = mysqli_query($conn, $query_nama_murid);
-                                                                        $r_murid    = mysqli_fetch_row($sql);
-                                                                        $nama_murid = $r_murid[0];
-
-                                                            ?>
-                                                                        <tr>
-                                                                            <!-- <td><?= $i++ ?></td> -->
-                                                                            <td><?= $nama_guru ?></td>
-                                                                            <td><?= $nama_murid ?></td>
-                                                                            <td style="display:flex">
-                                                                                <a href="lihat-pesan-guru.php?nisn=<?=$row['id_murid']; ?>" data-toggle="modal" class="btn btn-primary" style="margin-right:10px"><span class="glyphicon glyphicon-edit"></span> Lihat </a>
-                                                                                <form action="pesan_controller.php" method="POST">
-
-                                                                                    <button type="submit" name="delete-btn" value="<?=$key ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</a>
-                                                                                </form>
-                                                                            </td>
-                                                                        </tr>
-                                                                <?php
-
+                                                    if ($value) {
+                                                        // $i = 1;
+                                                        foreach ($value as $key => $row) {
+                                                            if (strval($row['id_guru']) === $_SESSION['id_guru'] && $row['id_murid'] === $_GET['nisn']) {
+                                                    ?>
+                                                                <div>
+                                                                    <?php
+                                                                    if ($row['id_penulis'] === $_SESSION['id_guru']) {
+                                                                    ?>
+                                                                        <div style="text-align:right;margin:20px;">
+                                                                            <div>
+                                                                                <?= $row['isi_pesan']; ?>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php
+                                                                    } else {
+                                                                    ?>
+                                                                        <div><?= $row['isi_pesan']; ?></div>
+                                                                    <?php
                                                                     }
-                                                                }
-                                                            } else {
-                                                                ?>
-                                                                <tr>
-                                                                    <td colspan="4">Tidak Ada Data</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                            <?php
+                                                                    ?>
+
+                                                                </div>
+                                                        <?php
+
                                                             }
-                                                            ?>
-                                                        </tbody>
-                                                    </table>
+                                                        }
+                                                    } else {
+                                                        ?>
+                                                        <div></div>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div>
+                                                    <form action="pesan_controller.php" method="POST" style="display:flex">
+                                                        <input style="display:none" name="id_murid" type="text" class="form-control" value="<?= $_GET['nisn'] ?>">
+                                                        <textarea class="form-control" rows="1" name="isi_pesan" style="margin-right:10px"></textarea>
+                                                        <button type="submit" class="btn btn-primary btn-md" name="save_pesan_guru_lihat">Kirim</a>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

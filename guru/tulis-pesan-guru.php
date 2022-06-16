@@ -132,7 +132,7 @@ include '../admin/controller.php';
                                         </div>
                                         <div class="form-group">
                                             <center>
-                                                <button type="submit" class="btn btn-primary btn-lg" name="save_pesan">Kirim</a>
+                                                <button type="submit" class="btn btn-primary btn-lg" name="save_pesan_guru">Kirim</a>
                                             </center>
                                         </div>
                                     </div>
