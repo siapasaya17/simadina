@@ -134,7 +134,7 @@
                                                                 ?>
                                                                 <tr>
                                                                     <?php 
-                                                                    $name = explode('/', $fetch['file']);
+                                                                    $name = explode('/', $fetch['foto']);
                                                                     ?>
                                                                     <td><?php echo $no++ ?></td>
                                                                     <td><?php echo $fetch['name']?></td>

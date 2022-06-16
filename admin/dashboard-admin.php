@@ -1,10 +1,19 @@
 ﻿<?php 
+    include 'config.php';
 	session_start();
  
 	// cek apakah yang mengakses halaman ini sudah login
 	if($_SESSION['level']==""){
 		header("location:index.php?pesan=gagal");
 	}
+
+    $query  = "SELECT * FROM guru";
+        $sql    = mysqli_query($conn, $query);
+        $count1 = mysqli_num_rows($sql);
+
+    $query  = "SELECT * FROM murid";
+        $sql    = mysqli_query($conn, $query);
+        $count2 = mysqli_num_rows($sql);
  
 	?>
 
@@ -90,14 +99,6 @@
                                 </li>
                             </ul>
                     </li>
-                    <li>
-                        <a href="persetujuan-raport-admin.php"><i class="fa fa-comments"></i> Acara<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="persetujuan-raport-admin.php">Persetujuan Raport</a>
-                                </li>
-                            </ul>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -117,12 +118,12 @@
 		    </div>
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
 					    <div class="board">
                             <div class="panel panel-primary">
 						        <div class="number">
 							        <h3>
-                                        <h3>44</h3>
+                                        <h3><?php echo $count1 ?></h3>
                                         <small>Guru</small>
 							        </h3> 
 						        </div>
@@ -132,12 +133,12 @@
                             </div>
 						</div>
                     </div>
-					<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="board">
                             <div class="panel panel-primary">
                                 <div class="number">
                                     <h3>
-                                        <h3>324</h3>
+                                        <h3><?php echo $count2 ?></h3>
                                         <small>Murid</small>
                                     </h3> 
 						        </div>
@@ -147,21 +148,6 @@
                             </div>
 						</div>
                     </div>
-					       <div class="col-md-4 col-sm-12 col-xs-12">
-					            <div class="board">
-                                    <div class="panel panel-primary">
-						                <div class="number">
-                                            <h3>
-                                                <h3>56</h3>
-                                                <small>Persetujuan Raport</small>
-                                            </h3> 
-						                </div>
-                                        <div class="icon">
-                                        <i class="fa fa-comments fa-5x green"></i>
-                                        </div>
-                                    </div>
-						        </div>
-                            </div>
                 </div> 	
 				<div class="row">
 				    <div class="col-md-12">

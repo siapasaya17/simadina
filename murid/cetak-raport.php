@@ -113,21 +113,32 @@ include '../admin/controller.php';
                             $no=1;
                             $query=mysqli_query($conn,"
                             select * from nilai
-                            INNER JOIN indikator ON indikator.kode_indikator = nilai.kode_indikator
+                            JOIN indikator ON indikator.kode_indikator = nilai.kode_indikator
                             ");
                             while($row=mysqli_fetch_array($query)){
                         ?>
                         <tr class="odd gradeX">
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $row['nama_indikator']; ?></td>
+                            <?php if($row['semester']=="I"){?>
+                            <td><?php if($row['nilai']=="BS"){echo "<p>&#10004</p>";}?></td>
+                            <td><?php if($row['nilai']=="B"){echo "<p>&#10004</p>";}?></td>
+                            <td><?php if($row['nilai']=="C"){echo "<p>&#10004</p>";}?></td>
+                            <td><?php if($row['nilai']=="K"){echo "<p>&#10004</p>";}?></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
+                            <?php } else{?>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td><?php if($row['nilai']=="BS"){echo "<p>&#10004</p>";}?></td>
+                            <td><?php if($row['nilai']=="B"){echo "<p>&#10004</p>";}?></td>
+                            <td><?php if($row['nilai']=="C"){echo "<p>&#10004</p>";}?></td>
+                            <td><?php if($row['nilai']=="K"){echo "<p>&#10004</p>";}?></td>
+                            <?php }?>
                     </tbody>
                     <?php
                     }

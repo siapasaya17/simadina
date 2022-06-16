@@ -2,6 +2,7 @@
     <label for="exampleInputAlamat">Perkembangan :</label>
     <select id="perkembangan_select" class="form-control" name="perkembangan">
         <option selected value="">-Pilih-</option>
+        <option>-</option>
         <?php 
             include '../admin/controller.php';
             $lingkupId = "";

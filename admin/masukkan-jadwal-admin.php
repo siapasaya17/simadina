@@ -82,14 +82,6 @@ include 'config.php';
                                 </li>
                             </ul>
                     </li>
-                    <li>
-                        <a href="persetujuan-raport-admin.php"><i class="fa fa-comments"></i> Acara<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="persetujuan-raport-admin.php">Persetujuan Raport</a>
-                                </li>
-                            </ul>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -118,7 +110,7 @@ include 'config.php';
                                             <label for="exampleInputFile">Input File :</label>
                                             <input type="file" class="form-control" name="upload" >
                                         </div>
-                                        <center> <button type="submit" name="submit" class="btn btn-default">Submit</button> </center> <br><br>
+                                        <center> <button type="submit" name="submit" class="btn btn-success"> <span class="glyphicon glyphicon-upload"></span> Submit</button> </center> <br><br>
                                     </form>
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -145,11 +137,14 @@ include 'config.php';
                                                                 ?>
                                                                 <tr>
                                                                     <?php 
-                                                                    $name = explode('/', $fetch['file']);
+                                                                    $name = explode('/', $fetch['foto']);
                                                                     ?>
                                                                     <td><?php echo $no++ ?></td>
                                                                     <td><?php echo $fetch['name']?></td>
-                                                                    <td><a href="download.php?file=<?php echo $name[1]?>" class="btn btn-primary"><span class="glyphicon glyphicon-download"></span> Download</a></td>
+                                                                    <td>
+                                                                        <a href="download.php?file=<?php echo $name[1]?>" class="btn btn-primary"><span class="glyphicon glyphicon-download"></span> Download</a>
+                                                                        <a href="hapus-jadwal-aksi.php?id_jadwal= <?php echo $fetch['id_jadwal']; ?>" data-toggle="modal" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</a>
+                                                                    </td>
 
                                                                 </tr>
                                                                 <?php

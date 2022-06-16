@@ -13,7 +13,7 @@ if (isset($_GET['id_jadwal'])) {
 		$foto_lama = mysqli_fetch_array($data_foto);
 
         // Menghapus Foto lama didalam folder FOTO
-		unlink("foto-jadwal/".$foto_lama['foto']);    
+		unlink($foto_lama['foto']);    
 
 		// Mengapus data siswa berdasarkan ID
 		$query = mysqli_query($conn,"DELETE FROM jadwal WHERE id_jadwal='$id_jadwal'");

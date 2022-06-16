@@ -2,6 +2,7 @@
     <label for="exampleInputAlamat">Indikator :</label>
     <select id="jurusan_form" class="form-control" name="jurusan_form">
         <option selected value="">-Pilih-</option>
+        <option>-</option>
         <?php 
             include '../admin/controller.php';
             $perkembanganId = "";

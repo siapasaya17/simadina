@@ -81,14 +81,6 @@ include 'config.php';
                                 </li>
                             </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-comments"></i> Acara<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="persetujuan-raport-admin.php">Persetujuan Raport</a>
-                                </li>
-                            </ul>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -137,8 +129,8 @@ include 'config.php';
                                                         <td><?php echo $row['username']; ?></td>
                                                         <td><?php echo $row['password']; ?></td>
                                                         <td>
-                                                        <a href="edit-admin.php?id= <?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-primary">Edit<span></span> </a> 
-                                                        <a href="hapus-admin-aksi.php?id= <?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-danger">Hapus<span></span> </a> 
+                                                        <a href="edit-admin.php?id= <?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit </a> 
+                                                        <a href="hapus-admin-aksi.php?id= <?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</a> 
                                                         </td>
                                                     </tr>
                                                 </tbody>

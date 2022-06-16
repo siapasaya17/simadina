@@ -134,8 +134,8 @@ include '../admin/controller.php';
                                                         </datalist>  
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="exampleInputID">ID Murid :</label>
-                                                            <input type="text" name="id_murid" class="form-control" id="id_murid" placeholder="ID Murid">
+                                                            <!-- <label for="exampleInputID">ID Murid :</label> -->
+                                                            <input type="hidden" name="id_murid" class="form-control" id="id_murid" placeholder="ID Murid">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputNik">Kelas :</label> 
@@ -174,10 +174,11 @@ include '../admin/controller.php';
                                                             <label for="exampleInputAlamat">Perkembangan :</label>
                                                             <select id="perkembangan_select" class="form-control" name="perkembangan">
                                                                 <option selected value="">-Pilih-</option>
+                                                                </select>
                                                                 <?php 
                                                                     
                                                                 ?>
-                                                            </select>
+                                                            
                                                         </div>
                                                        <div class="form-group">
                                                             <label for="exampleInputAlamat">Indikator :</label>

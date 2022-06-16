@@ -125,33 +125,42 @@ include '../admin/controller.php';
                                                     <th>Perkembangan</th>
                                                     <th>Indikator</th>
                                                     <th>Nilai</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                                 <tbody>
                                                     <?php
-                                                        $no=1;
-                                                        $query=mysqli_query($conn,"select * from nilai");
+                                                      $no=1;
+                                                      $query=mysqli_query($conn,"SELECT nilai.id_murid, murid.nama, murid.kelas, murid.nisn, nilai.semester, nilai.kode_lingkup, nilai.kode_sub_lingkup, nilai.kode_indikator, nilai.nilai from nilai inner join murid on murid.id_murid=nilai.id_murid group by id_murid ");
+                                                      while($row=mysqli_fetch_array($query)){
+
+                                                        // $no=1;
+                                                        // $query=mysqli_query($conn,"select distinct nilai.id_murid from nilai inner join murid on murid.id_murid");
                                                         
                                                         
-                                                        while($row=mysqli_fetch_array($query)){
-                                                            $idn = $row['id_murid'];
-                                                            $query2=mysqli_query($conn,"select * from murid where id_murid=$idn");
-                                                            $row_murid=mysqli_fetch_array($query2)
+                                                        // while($row=mysqli_fetch_array($query)){
+                                                        //     $idn = $row['id_murid'];
+                                                        //     $query2=mysqli_query($conn,"select *from murid where id_murid=$idn");
+                                                        //     $row_murid=mysqli_fetch_array($query2)
                                                     ?>
                                                     <tr class="odd gradeX">
                                                         <td><?php echo $no++ ?></td>
                                                         <?php 
                                                            
                                                          ?>
-                                                        <td><?php echo $row_murid['nama']; ?></td>
+                                                        <td><?php echo $row['nama']; ?></td>
                                                         <td><?php echo $row['id_murid']; ?></td>
-                                                        <td><?php echo $row_murid['kelas']; ?></td>
-                                                        <td><?php echo $row_murid['nisn']; ?></td>
+                                                        <td><?php echo $row['kelas']; ?></td>
+                                                        <td><?php echo $row['nisn']; ?></td>
                                                         <td><?php echo $row['semester']; ?></td>
                                                         <td><?php echo $row['kode_lingkup']; ?></td>
                                                         <td><?php echo $row['kode_sub_lingkup']; ?></td>
                                                         <td><?php echo $row['kode_indikator']; ?></td>
                                                         <td><?php echo $row['nilai']; ?></td>
+                                                        <td>
+                                                        <a href="edit-nilai.php?id_murid= <?php echo $row['id_murid']; ?>" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit </a> 
+                                                        <a href="hapus-nilai-aksi.php?id_murid= <?php echo $row['id_murid']; ?>" data-toggle="modal" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</a>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                                     <?php

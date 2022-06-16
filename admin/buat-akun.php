@@ -84,14 +84,6 @@ include 'config.php';
                                 </li>
                             </ul>
                     </li>
-                    <li>
-                        <a href="persetujuan-raport-admin.php"><i class="fa fa-comments"></i> Acara<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="persetujuan-raport-admin.php">Persetujuan Raport</a>
-                                </li>
-                            </ul>
-                    </li>
                 </ul>
             </div>
         </nav>

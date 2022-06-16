@@ -81,14 +81,6 @@ include 'config.php';
                                 </li>
                             </ul>
                     </li>
-                    <li>
-                        <a href="persetujuan-raport-admin.php"><i class="fa fa-comments"></i> Acara<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="persetujuan-raport-admin.php">Persetujuan Raport</a>
-                                </li>
-                            </ul>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -181,8 +173,8 @@ include 'config.php';
                                                                 <td><?php echo $row['jarak_rumah']; ?></td>
                                                                 <td><img src="foto-murid/<?php echo $row['foto'] ?>" width="70" height="80"></td>
                                                                 <td>
-                                                                <a href="edit-akun-murid.php?id_murid=<?php echo $row['id_murid'];  ?>" data-toggle="modal" class="btn btn-primary btn-sm">Edit<span></span> </a> 
-                                                                <a href="hapus-akun-murid-aksi.php?id_murid= <?php echo $row['id_murid']; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Hapus<span></span> </a> 
+                                                                <a href="edit-akun-murid.php?id_murid=<?php echo $row['id_murid'];  ?>" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit </a> 
+                                                                <a href="hapus-akun-murid-aksi.php?id_murid= <?php echo $row['id_murid']; ?>" data-toggle="modal" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</a> 
                                                                 </td>
                                                             </tr>
                                                         </tbody>
